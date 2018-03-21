@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Appenders>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p [%t] %c{1}:%L - %m%n"/>
+        </Console>
+
+        <RollingFile name="rollingFileAppender" fileName="logs/main.log"
+                     filePattern="logs/$${date:yyyy-MM}/main-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%t] %F:%L - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="stdout" level="info">
+            <appender-ref ref="consoleAppender"/>
+        </Logger>
+        <Logger name="org.quartz" level="error">
+            <AppenderRef ref="rollingFileAppender"/>
+        </Logger>
+        <Logger name="org.apache" level="error">
+            <AppenderRef ref="rollingFileAppender"/>
+        </Logger>
+        <Logger name="com.mchange" level="error">
+            <AppenderRef ref="rollingFileAppender"/>
+        </Logger>
+        <Logger name="io.netty" level="error">
+            <AppenderRef ref="rollingFileAppender"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="rollingFileAppender"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
