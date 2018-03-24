@@ -16,9 +16,9 @@ public class ProjectServer {
     public static void main(String[] args) {
         logger.info("Register Action");
         ActionManager.register();
-        logger.info("RedisPoolInit");
+        logger.info("RedisPoolInit is OK！");
         RedisPoolUtil.initialPool();
-        logger.info("MysqlPoolInit");
+        logger.info("MysqlPoolInit is OK！");
         MysqlConnPool.initMysqlPool();
         logger.info("Start Netty Server");
         NettyServer.start();

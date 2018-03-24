@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
+ * 每一张表对应一个DAOImpl
  * @author weicong
  * @date 2018/3/21 0021
  */

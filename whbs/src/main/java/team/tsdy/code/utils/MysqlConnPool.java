@@ -1,6 +1,8 @@
 package team.tsdy.code.utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -13,6 +15,8 @@ import java.util.Properties;
  * @date 2018/3/21 0021
  */
 public class MysqlConnPool {
+    private static final Logger logger = LogManager.getLogger(MysqlConnPool.class);
+
     public static final MysqlConnPool instance = new MysqlConnPool();
     private static ComboPooledDataSource comboPooledDataSource;
     public static void initMysqlPool(){
@@ -39,6 +43,8 @@ public class MysqlConnPool {
             comboPooledDataSource.setMaxPoolSize(Integer.valueOf(props.getProperty("C3p0.pool.MaxPoolSize")));
             comboPooledDataSource.setMinPoolSize(Integer.valueOf(props.getProperty("C3p0.pool.MinPoolSize")));
             comboPooledDataSource.setInitialPoolSize(Integer.valueOf(props.getProperty("C3p0.pool.InitPoolSize")));
+            int mysqlPoolSize=comboPooledDataSource.getInitialPoolSize();
+            logger.info("Mysql连接池初始化完成，mysqlPoolSize="+mysqlPoolSize);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }

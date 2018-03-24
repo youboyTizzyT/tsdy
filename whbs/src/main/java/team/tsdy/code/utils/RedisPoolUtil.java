@@ -1,12 +1,10 @@
 package team.tsdy.code.utils;
 
-import org.omg.CORBA.Object;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -14,6 +12,8 @@ import java.util.Properties;
  * @date 2018/3/21 0021
  */
 public class RedisPoolUtil {
+    private static final Logger logger = LogManager.getLogger(RedisPoolUtil.class);
+
     private static JedisPool jedisPool = null;
     /**
      *  把redis连接对象放到本地线程中
@@ -49,7 +49,8 @@ public class RedisPoolUtil {
             jedisPool = new JedisPool(config, props.getProperty("redis.ip"),
                     Integer.valueOf(props.getProperty("redis.port")),
                     Integer.valueOf(props.getProperty("redis.timeout")));
-            System.out.println("线程池被成功初始化");
+            int activeNum=jedisPool.getNumActive();
+            logger.info("redis线程池被成功初始化 activeNum="+activeNum);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -24,9 +24,11 @@ public class LoginService {
         if (jsonObject.get("password").equals(password)){
             JSONObject jsonObject1=new JSONObject();
             jsonObject1.put("1","1");
+            // 发送给客户端数据。完全以json的形式发送。
             user.send(jsonObject1);
         }
         try {
+            // 对数据库操作完成后别忘了关闭连接
             dao.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();

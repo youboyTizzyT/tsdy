@@ -6,8 +6,8 @@ package team.tsdy.code.config;
  */
 public class ServerConfig {
     public static final int PORT = Integer.parseInt(System.getProperty("port", "8999"));
-    public static final int HTTP_PORT = Integer.parseInt(System.getProperty("port", "8008"));
     public static final String PACKAGE_NAME = "team.tsdy.code.action";
+
     public static final int TCP_READ_TIMEOUT = 30;
     public static final int TCP_WRITE_TIMEOUT = 0;
 

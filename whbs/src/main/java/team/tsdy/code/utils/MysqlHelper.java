@@ -58,7 +58,6 @@ public class MysqlHelper {
             int columnCount = metaData.getColumnCount();
             while (rs.next()) {
                 JSONObject jsonObj = new JSONObject();
-
                 // 遍历每一列
                 for (int i = 1; i <= columnCount; i++) {
                     String columnName =metaData.getColumnLabel(i);
